@@ -74,13 +74,13 @@ print("head -",linkedList.head)
 
 > ## Stack
 
-The main goal of building a stack is to enforce how you access your data. In computer science, a stack is known as the LIFO (last in first out) data structure. Elements that are pushed in last are the first ones to be popped out. Stack can be implemented with array or linked list. The second is more productive.
+The main goal of building a stack is to enforce how you access your data. In computer science, a stack is known as the LIFO (last in first out) data structure. Elements that are pushed in last are the first ones to be popped out. Stack can be implemented with array or linked list. This realizations have the same performance in Swift.
 
 There are only two principal operations for a stack: 
   - push - adding an element to the top of the stack 
   - pop - removing the top element of the stack
 
-#### Performance(with linked list)
+#### Performance
 
 |     Action    | Performance |
 | ------------- | ----------- |
