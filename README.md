@@ -74,10 +74,19 @@ print("head -",linkedList.head)
 
 > ## Stack
 
-The main goal of building a stack is to enforce how you access your data. In computer science, a stack is known as the LIFO (last in first out) data structure. Elements that are pushed in last are the first ones to be popped out. Stack can be implemented with array or linked list.
+The main goal of building a stack is to enforce how you access your data. In computer science, a stack is known as the LIFO (last in first out) data structure. Elements that are pushed in last are the first ones to be popped out. Stack can be implemented with array or linked list. The second is more productive.
+
 There are only two principal operations for a stack: 
   - push - adding an element to the top of the stack 
   - pop - removing the top element of the stack
+
+#### Performance(with linked list)
+
+|     Action    | Performance |
+| ------------- | ----------- |
+|        Pop   | O(1)        |
+| push        | O(1)        |
+| peek        | O(1)        |
 
 ![640px-Data_stack svg](https://user-images.githubusercontent.com/78361312/175772717-3b553c0c-3ad4-4d6d-bbd1-78da4a9c89a2.png)
 
