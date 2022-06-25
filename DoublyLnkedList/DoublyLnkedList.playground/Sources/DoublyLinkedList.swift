@@ -1,10 +1,11 @@
 import Foundation
 
-public struct LinkedList<Value: Equatable> {
+public struct DoublyLinkedList<Value: Equatable> {
     public var head: Node<Value>?
+    public var tail: Node<Value>?
     
     public init() {}
-  
+    
     public var isEmpty: Bool {
         return head == nil
     }
@@ -14,7 +15,7 @@ public struct LinkedList<Value: Equatable> {
         var count = 0
         
         while currentNode != nil {
-            length += 1
+            count += 1
             currentNode = currentNode?.next
         }
         
@@ -22,52 +23,63 @@ public struct LinkedList<Value: Equatable> {
     }
     
     public mutating func push(_ value: Value) {
-        let node = Node(value: value, next: head)
-        head = node
+        if isEmpty {
+            head = Node(value: value)
+            tail = head
+        } else {
+            let newNode = Node(value: value, next: head)
+            head?.previous = newNode
+            head = newNode
+        }
     }
     
     public mutating func append(_ value: Value) {
-        let newNode =  Node(value: value)
-        
-        guard head != nil else {
+        let newNode = Node(value: value)
+      
+        guard let tailNode = tail else {
             head = newNode
+            tail = newNode
             return
         }
-        
-        var last = head
-        
-        while last?.next != nil {
-            last = last?.next
-        }
-        
-        last?.next = newNode
+      
+        newNode.previous = tailNode
+        tailNode.next = newNode
+        tail = newNode
     }
     
     public mutating func insert(_ value: Value, after node: Node<Value>) {
-        let newNode =  Node(value: value, next: node.next)
-        node.next = newNode
-    }
     
-    public mutating func removeLast() {
-        guard head != nil else {
-            return
-        }
-        
-        var last = head
-        
-        while last?.next?.next != nil {
-            last = last?.next
-        }
-        
-        last?.next = nil
+        let newNode = Node(value: value, next: node.next, previous: node)
+        node.next = newNode
+        newNode.previous = newNode
     }
     
     public mutating func removeFirst() {
         head = head?.next
+        
+        if isEmpty {
+            tail = nil
+        }
     }
-
+    
+    public mutating func removeLast() {
+        guard tail != nil, head != nil else {
+            return
+        }
+        
+        if tail == head {
+            tail = nil
+            head = nil
+        } else {
+            tail = tail?.previous
+            tail?.next = nil
+        }
+    }
+    
     public mutating func remove(after node: Node<Value>) {
-        node.next = node.next?.next
+        let removingNode = node.next
+        node.next = removingNode?.next
+        removingNode?.next?.previous = node
     }
     
     public func search(by value: Value) -> Node<Value>? {
@@ -98,15 +110,12 @@ public struct LinkedList<Value: Equatable> {
     
     public func allValues() -> [Value] {
         var elements: [Value?] = []
-        var last = head
+        var currentNode = head
+        var count = 0
         
-        if last != nil {
-            elements.append(head?.value)
-        }
-        
-        while last?.next != nil {
-            last = last?.next
-            elements.append(last?.value)
+        while currentNode != nil {
+            elements.append(currentNode?.value)
+            currentNode = currentNode?.next
         }
 
         return elements.compactMap { $0 }
