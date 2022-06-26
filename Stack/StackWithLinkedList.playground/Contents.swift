@@ -14,5 +14,5 @@ print("pop -", stack.pop(), terminator: "\n\n")
 print("---Example of peek---")
 print("last element - ", stack.peek(), terminator: "\n\n")
 
-print("---Example of checking if is linked list empty---")
+print("---Example of checking if is stack empty---")
 print("is empty -", stack.isEmpty)

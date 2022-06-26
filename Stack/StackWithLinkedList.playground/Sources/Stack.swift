@@ -1,6 +1,5 @@
 import Foundation
 
-
 public struct Stack<Element> {
     fileprivate var list: LinkedList<Element> = LinkedList()
     
