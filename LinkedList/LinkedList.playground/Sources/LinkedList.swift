@@ -14,7 +14,7 @@ public struct LinkedList<Value: Equatable> {
         var count = 0
         
         while currentNode != nil {
-            length += 1
+            count += 1
             currentNode = currentNode?.next
         }
         
